@@ -1,0 +1,30 @@
+name:Deploy site
+on:
+  push:
+   branches:
+     -master
+     
+jobs:
+  deploy:
+    runs-on:ubuntu-latest
+
+strategy:
+  matrix:
+    node-version ;[16.x]
+
+steps
+    - name: checkout source files
+      uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name : install dependencies
+      run: npm ci
+    - name : build project
+      run : npm ci build
+    - name : deploy
+      uses :Appy-007/github-pages-actions
+      with:
+        branch : main
+        folder : build
