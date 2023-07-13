@@ -30,4 +30,5 @@ jobs:
       run : npm ci
     - name: Run test
       run: npm test
-    
+    - run : npm ci
+    - run : npm test
